@@ -1,0 +1,269 @@
+FORMAT: 1A
+HOST: http://posbilling.16mb.com/pos_bill/api/v1
+
+# posbill POC APIs
+
+### GENERAL INFO
+#### ERROR CODE 
+400 : BAD REQUEST
+
+#### Abbreviation
+pid : product_id
+
+cid : category_id
+
+oid : offer_id
+
+#### Meaning of offers.offer according to offers.type
+
+BULK => offers.offer = product quantity (Buy 2 Jeans get 1 Jeans free {same product})
+
+FREE => offers.offer = product id (Buy 2 Jeans and get one tees FREE {different product})
+
+OFF_AMOUNT => offers.offer = amount (Buy 2 Tees and get 100 bucks OFF)
+
+OFF_PERCENT => offers.offer = percentage (Buy 2 Tees and 10% OFF)
+
+## Product Category [/product/category]
+
+### List All Product Category [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "cid": "1",
+                "cat_name": "Books"
+            },
+            {
+                "cid": "2",
+                "cat_name": "Clothing"
+            }
+        ]
+
+
+## Product Detail by ID [/product/:product_id]
+### Product Detail By Product ID [GET]
+
++ Response 200 (application/json)
+
+{
+    "pid": "6",
+    "cid": "2",
+    "scan_code": "12367687",
+    "title": "Lee Marc Men's Casual Shirt ",
+    "detail": "Material: Denim # Color: Blue\r\nNeck Style: Banded Collar # Sleeve Type: Sleeveless\r\nFitting Type: Regular Fit # Closure Type: Buttoned\r\nOccasion: Casual\r\nWash care instructions: Regular hand wash # iron reverse side",
+    "image": "",
+    "orignal_price": "600",
+    "our_price": "450",
+    "active": "YES",
+    "offers": [
+        {
+            "oid": "1",
+            "pid": "6",
+            "type": "OFF_AMOUNT",
+            "min_order": "2",
+            "offer": "50",
+            "detail": "buy 2 and get 50 bucks off.",
+            "active": "YES"
+        },
+        {
+            "oid": "2",
+            "pid": "6",
+            "type": "OFF_PERCENT",
+            "min_order": "5",
+            "offer": "20",
+            "detail": "Buy 5 and get 20% off.",
+            "active": "YES"
+        },
+        {
+            "oid": "3",
+            "pid": "6",
+            "type": "BULK",
+            "min_order": "3",
+            "offer": "1",
+            "detail": "Buy 3 get 1 Free.",
+            "active": "YES"
+        },
+        {
+            "oid": "4",
+            "pid": "6",
+            "type": "BULK",
+            "min_order": "10",
+            "offer": "4",
+            "detail": "Buy 10 get 4 FREE",
+            "active": "YES"
+        },
+        {
+            "oid": "5",
+            "pid": "6",
+            "type": "FREE",
+            "min_order": "4",
+            "offer": "7",
+            "detail": "Buy 4 and get Clifton Army Track Pant - Walnut FREE",
+            "active": "YES"
+        },
+        {
+            "oid": "6",
+            "pid": "6",
+            "type": "FREE",
+            "min_order": "2",
+            "offer": "1",
+            "detail": "Buy 2 and get One book free",
+            "active": "YES"
+        }
+    ]
+}
+
+## Product Detail by Scan code [/product/scan/:scan_code]
+### Product Detail By Product Scan code [GET]
+
+
++ Response 200 (application/json)
+
+{
+    "pid": "6",
+    "cid": "2",
+    "scan_code": "12367687",
+    "title": "Lee Marc Men's Casual Shirt ",
+    "detail": "Material: Denim # Color: Blue\r\nNeck Style: Banded Collar # Sleeve Type: Sleeveless\r\nFitting Type: Regular Fit # Closure Type: Buttoned\r\nOccasion: Casual\r\nWash care instructions: Regular hand wash # iron reverse side",
+    "image": "",
+    "orignal_price": "600",
+    "our_price": "450",
+    "active": "YES",
+    "offers": [
+        {
+            "oid": "1",
+            "pid": "6",
+            "type": "OFF_AMOUNT",
+            "min_order": "2",
+            "offer": "50",
+            "detail": "buy 2 and get 50 bucks off.",
+            "active": "YES"
+        },
+        {
+            "oid": "2",
+            "pid": "6",
+            "type": "OFF_PERCENT",
+            "min_order": "5",
+            "offer": "20",
+            "detail": "Buy 5 and get 20% off.",
+            "active": "YES"
+        },
+        {
+            "oid": "3",
+            "pid": "6",
+            "type": "BULK",
+            "min_order": "3",
+            "offer": "1",
+            "detail": "Buy 3 get 1 Free.",
+            "active": "YES"
+        },
+        {
+            "oid": "4",
+            "pid": "6",
+            "type": "BULK",
+            "min_order": "10",
+            "offer": "4",
+            "detail": "Buy 10 get 4 FREE",
+            "active": "YES"
+        },
+        {
+            "oid": "5",
+            "pid": "6",
+            "type": "FREE",
+            "min_order": "4",
+            "offer": "7",
+            "detail": "Buy 4 and get Clifton Army Track Pant - Walnut FREE",
+            "active": "YES"
+        },
+        {
+            "oid": "6",
+            "pid": "6",
+            "type": "FREE",
+            "min_order": "2",
+            "offer": "1",
+            "detail": "Buy 2 and get One book free",
+            "active": "YES"
+        }
+    ]
+}
+
+## Product Detail by ID with FREE TAG [/product/:product_id/FREE]
+It is more fast, use it for Browse product or FREE product info.
+### Only Product Detail without offers [GET]
+
++ Response 200 (application/json)
+{
+    "pid": "6",
+    "cid": "2",
+    "scan_code": "12367687",
+    "title": "Lee Marc Men's Casual Shirt ",
+    "detail": "Material: Denim # Color: Blue\r\nNeck Style: Banded Collar # Sleeve Type: Sleeveless\r\nFitting Type: Regular Fit # Closure Type: Buttoned\r\nOccasion: Casual\r\nWash care instructions: Regular hand wash # iron reverse side",
+    "image": "",
+    "orignal_price": "600",
+    "our_price": "450",
+    "active": "YES"
+}
+
+## Product Detail by ID with OFFERS TAG [/product/:product_id/OFFERS]
+It is more fast, use it for Browse product OFFERS
+### Only Product OFFERS [GET]
+
++ Response 200 (application/json)
+[
+    {
+        "oid": "1",
+        "pid": "6",
+        "type": "OFF_AMOUNT",
+        "min_order": "2",
+        "offer": "50",
+        "detail": "buy 2 and get 50 bucks off.",
+        "active": "YES"
+    },
+    {
+        "oid": "2",
+        "pid": "6",
+        "type": "OFF_PERCENT",
+        "min_order": "5",
+        "offer": "20",
+        "detail": "Buy 5 and get 20% off.",
+        "active": "YES"
+    },
+    {
+        "oid": "3",
+        "pid": "6",
+        "type": "BULK",
+        "min_order": "3",
+        "offer": "1",
+        "detail": "Buy 3 get 1 Free.",
+        "active": "YES"
+    },
+    {
+        "oid": "4",
+        "pid": "6",
+        "type": "BULK",
+        "min_order": "10",
+        "offer": "4",
+        "detail": "Buy 10 get 4 FREE",
+        "active": "YES"
+    },
+    {
+        "oid": "5",
+        "pid": "6",
+        "type": "FREE",
+        "min_order": "4",
+        "offer": "7",
+        "detail": "Buy 4 and get Clifton Army Track Pant - Walnut FREE",
+        "active": "YES"
+    },
+    {
+        "oid": "6",
+        "pid": "6",
+        "type": "FREE",
+        "min_order": "2",
+        "offer": "1",
+        "detail": "Buy 2 and get One book free",
+        "active": "YES"
+    }
+]

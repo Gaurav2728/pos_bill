@@ -24,7 +24,7 @@ $app->get('/product/category', function () {
 $app->get('/product/:pid', function ($pid) {
   $response = getProductIdInfo($pid);
   if ($response) {
-    echo json_encode($response);
+    echo json_encode(modifyPDO($response, 'offers', getOfferList($response->pid)));
   }
 });
 
@@ -36,15 +36,23 @@ $app->get('/product/scan/:sid', function ($sid) {
   }
 });
 
+//-- check product detail by pid and return product data
+$app->get('/product/:pid/FREE', function ($pid) {
+  $response = getProductIdInfo($pid);
+  if ($response) {
+    echo json_encode($response);
+  }
+});
+
 //-- this will give you product offer details
-// $app->get('/product/:pid/offers', function ($pid) {
-//   $response = getOfferList($pid);
-//   if ($response != null) {
-//     echo json_encode($response);
-//   } else {
-//     echo json_encode([]);
-//   }
-// });
+$app->get('/product/:pid/OFFERS', function ($pid) {
+  $response = getOfferList($pid);
+  if ($response != null) {
+    echo json_encode($response);
+  } else {
+    echo json_encode([]);
+  }
+});
 
 
 //---------------------
@@ -60,7 +68,7 @@ function getProductIdInfo($pid) {
       showError(400, "Product not available.");
       return;
     }
-    return modifyPDO($update, 'offers', getOfferList($update->pid));
+    return $update;
   } catch(PDOException $e) {
     showError(400, "Report this bug to Developer", $e->getMessage(), $e);
   }
