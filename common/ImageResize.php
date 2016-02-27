@@ -14,9 +14,12 @@ header('Content-Type: image/jpg');
 
   $fullpath = $directory.$imagename;
 
+	if (!file_exists($fullpath)) {
+		$fullpath = $directory.'placeholder.png';
+	}
  //  imagejpeg($fullpath);
 	include('SimpleImage.php');
-    $image = new SimpleImage();
+  $image = new SimpleImage();
 	$image->load($fullpath);
 
 
