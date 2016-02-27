@@ -12,7 +12,7 @@ $stmt = $db->prepare($sql);
 $stmt->execute();
 $updates = $stmt->fetchAll(PDO::FETCH_OBJ);
 $db = null;
-print_r($updates);
+// print_r($updates);
 
 ?><!DOCTYPE HTML>
 <html lang="en-US">
@@ -20,8 +20,7 @@ print_r($updates);
 	<meta charset="UTF-8">
 	<title></title>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery-barcode.min.js"></script>
-	<script type="text/javascript" src="jquery-barcode.js"></script>
+
 	 <script src="JsBarcode.js"></script>
 	<script src="barcodes/EAN_UPC.js"></script>
 	<script src="barcodes/CODE128.js"></script>
@@ -29,31 +28,36 @@ print_r($updates);
 <style>
 li {
     display: inline;
+		width:180;
+		float:left;
 }
 </style>
 </head>
 <body>
-	<table>
+	<table align="center" cellspacing="20" >
 	<?php
 
 	foreach($updates as $values){
 
 		?>
 
+		<tr >
+				<td width="280" style="text-align:center;">
+						<img width="180" style="display: inline-block"	 height="auto" src="../imgs/upload/<?php echo $values->image;?>" alt="Mountain View" style="width:304px;height:228px;">
+				</td>
+				<td style="text-align:left;"  valign="top" width="280">
+				  <b>	<?php echo $values->title;?></b>
+				</td>
+				<td width="280" valign="top" >
+						<img id="barcode3<?php echo $values->pid;?>"/>
+				</td>
+		</tr>
 		<tr>
-			<td width="180">
 
+				<td style="text-align:left;padding-bottom: 70px; border-bottom:1pt solid black;"  valign="top" width="280"  colspan="3">
+						<?php    echo $string = str_replace('#', '<br/>', $values->detail);  ;?>
+				</td>
 
-
-<ul>
-  <li><img width="180" style="display: inline-block" height="100" src="../imgs/upload/<?php echo $values->image;?>" alt="Mountain View" style="width:304px;height:228px;">
-	</li>
-  <li><?php echo $values->title;?></li>
-  <li>asa	<img id="barcode3<?php echo $values->pid;?>"/>
-
-</li>
-</ul>
-			</td>
 		</tr>
 		<?php
 }
@@ -73,7 +77,7 @@ window.onload = function() {
 				codes.forEach(function(entry) {
 					var htmlID = "#barcode3"+entry.pid;
 					var scan_code = entry.scan_code;
-					$(htmlID).JsBarcode("9780199532179",{format:"EAN",displayValue:true,fontSize:20, width:2,height:25});
+					$(htmlID).JsBarcode(scan_code,{format:"EAN",displayValue:true,fontSize:20, width:2,height:25});
 				});
     }
 }
