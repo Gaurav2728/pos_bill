@@ -5,8 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once '../common/db.php';
 
-$sql = "SELECT `pid`,`scan_code`, `title`, `detail`, `image`, `available_stock`, `orignal_price`, `our_price` FROM `product_list` WHERE `active` = 'YES'
-";
+$sql = "SELECT `bid`, `bill_detail`, `payment`, `amount`, `date` FROM `bill` ORDER BY `bid` DESC";
 $db = getDB();
 $stmt = $db->prepare($sql);
 $stmt->execute();
@@ -19,11 +18,7 @@ $db = null;
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-	 <script src="JsBarcode.js"></script>
-	<script src="barcodes/EAN_UPC.js"></script>
-	<script src="barcodes/CODE128.js"></script>
 
 <style>
    a:link {    color: inherit;color: inherit; text-decoration: none;}
@@ -50,11 +45,12 @@ $db = null;
       <td colspan="3" style="background-color:#e9eaed; color:#000000; padding-top:10px; padding-bottom:10px; padding-left:5%;" align="left">
       <font size="4">Welcome in Next Generation Shopping</font>
       <font size="4" style="float: right;">
-        <a href="" style="margin: 0px 20px 0px 10px;">Test Barcode</a>
-        <a href="../billinghistory" style="margin: 0px 20px 0px 10px;">Billing History</a>
+        <a href="../barcode" style="margin: 0px 20px 0px 10px;">Test Barcode</a>
+        <a href="" style="margin: 0px 20px 0px 10px;">Billing History</a>
         <a href="../#About" style="margin: 0px 20px 0px 10px;">About</a>
         <a hreF="../#contact" style="margin: 0px 20px 0px 10px;">Contact</a>
         <a href="../mockup" style="margin: 0px 20px 0px 10px;">Mockup</a>
+
       </font>
       </td>
     </tr>
@@ -67,26 +63,24 @@ $db = null;
 
 	foreach($updates as $values){
 
-		?>
+	?>
 
 		<tr style="background-color: white;">
-				<td width="30%" style="text-align:center;">
-						<img width="180" style="display: inline-block"	 height="auto" src="../imgs/upload/<?php echo $values->image;?>" alt="Mountain View" style="width:304px;height:228px;">
-				</td>
-				<td style="text-align:left;"  valign="top" width="25%">
-				<h2 style="" >  <b>	<?php echo $values->title;?></b></h2>
-				<!-- <p><span>Price: </span></p> -->
-				<h3><p><span>Our Price: <strike style="color:red;">₹<?php echo $values->orignal_price;?></strike>  </span><span style="color:green;">
-					&nbsp;₹<?php echo $values->our_price;?></span></p><h3>
-				</td>
-				<td width="25%" style="padding-top: 15px;" valign="top" >
-						<img id="barcode3<?php echo $values->pid;?>"/>
-				</td>
+				<td width="80%" style="text-align:left;">
+          <h3><p><span>Bill Number: </span><?php echo 2823765+$values->bid;?></p><h3>
+            <h3><p><span>Amount: ₹</span><?php echo $values->amount;?></p><h3>
+
+            <?php if($values->payment == 'YES'){ ?>
+                <h3><p>Payment Status: <span style="color:green;">Done</span></p><h3>
+            <?php }else{ ?>
+              <h3><p>Payment Status: <span style="color:red;">Not Done</p><h3>
+
+              <?php } ?>
+
+      	</td>
+
 		</tr>
 
-				<td style="text-align:left;padding-bottom: 50px;line-height: 28px;"  valign="top" width="280"  colspan="3">
-						<?php    echo $string = str_replace('#', '<br/>', $values->detail);  ?>
-				</td>
 
 		</tr>
     <tr><td style="text-align:left; border-bottom:1pt solid black;background-color:#402161; height:3px; font-size:0px;"  valign="top" width="280"  colspan="3">
@@ -103,18 +97,6 @@ $db = null;
 
 	</div>
 
-<script>
-window.onload = function() {
-    if (window.jQuery) {
-        // jQuery is loaded
-				var codes = <?php echo json_encode($updates) ?>;
-				codes.forEach(function(entry) {
-					var htmlID = "#barcode3"+entry.pid;
-					var scan_code = entry.scan_code;
-					$(htmlID).JsBarcode(scan_code,{format:"EAN",displayValue:true,fontSize:20, width:2,height:95});
-				});
-    }
-}
-</script>
+
 </body>
 </html>

@@ -1,9 +1,9 @@
 <?php
 //-- gives you the product category list
-$app->post('/bill/:paymentDone', function ($paymentDone) {
+$app->post('/bill/:paymentDone/:amount', function ($paymentDone, $amount) {
   $bill = addslashes(json_encode(getRequestBody()));
   try {
-    $sql = "INSERT INTO `bill` (`bill_detail`, `payment`, `date`) VALUES ('$bill', '$paymentDone', NOW())";
+    $sql = "INSERT INTO `bill` (`bill_detail`, `payment`,`amount`, `date`) VALUES ('$bill', '$paymentDone', '$amount', NOW())";
     $db = getDB();
     $stmt = $db->prepare($sql);
     $stmt->execute();
