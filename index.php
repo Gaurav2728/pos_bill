@@ -48,12 +48,10 @@
         <td colspan="3" style="padding-top:15px; padding-bottom:15px; padding-left:5%; padding-right:5%; line-height:22px;">
             <font size="3">
                 <p style="float: left;">
-                  <img src="imgs/assets/HomePlus4.jpg" width="500px" height="300px"/>
-                  <br/><font size="5">Products barcode scanning by Customer</font>
+                  <img src="imgs/assets/Screen_Final/02.jpg" width="500px" height="889px"/>
                 </p>
                 <p style="float: right;">
-                  <img src="imgs/assets/app.jpeg" width="500px" height="300px"/>
-                  <br/><font size="5">Mobile app showing users selected product list</font>
+                  <img src="imgs/assets/Screen_Final/03.png" width="500px" height="889px"/>
                 </p>
             </font>
         </td>
@@ -62,17 +60,26 @@
         <td colspan="3" style="padding-top:15px; padding-bottom:15px; padding-left:5%; padding-right:5%; line-height:22px;">
             <font size="3">
                 <p style="float: left;">
-                  <img src="imgs/assets/HomePlus4.jpg" width="500px" height="300px"/>
-                  <br/><font size="5">Products barcode scanning by Customer</font>
+                  <img src="imgs/assets/Screen_Final/04.png" width="500px" height="889px"/>
                 </p>
                 <p style="float: right;">
-                  <img src="imgs/assets/app.jpeg" width="500px" height="300px"/>
-                  <br/><font size="5">Mobile app showing users selected product list</font>
+                  <img src="imgs/assets/Screen_Final/05.png" width="500px" height="889px"/>
                 </p>
             </font>
         </td>
       </tr>
-
+      <tr>
+        <td colspan="3" style="padding-top:15px; padding-bottom:15px; padding-left:5%; padding-right:5%; line-height:22px;">
+            <font size="3">
+                <p style="float: left;">
+                  <img src="imgs/assets/Screen_Final/06.png" width="500px" height="889px"/>
+                </p>
+                <p style="float: right;">
+                  <img src="imgs/assets/Screen_Final/07.jpg" width="500px" height="889px"/>
+                </p>
+            </font>
+        </td>
+      </tr>
       <tr>
         <td colspan="3" style="padding-top:15px; padding-bottom:15px; padding-left:5%; padding-right:5%; line-height:22px;">
           <a name="About"></a>
