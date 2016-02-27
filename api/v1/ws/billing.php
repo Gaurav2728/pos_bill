@@ -15,7 +15,7 @@ $app->post('/bill/:paymentDone', function ($paymentDone) {
       showError(400, "Can't create bill.");
       return;
     }
-    $bill2['bill_id'] = $id;
+    $bill2['bill_id'] = getEncryptBill($id);
     echo json_encode($bill2);
   } catch(PDOException $e) {
     showError(400, "Report this bug to Developer", $e->getMessage(), $e);
