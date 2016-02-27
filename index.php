@@ -11,8 +11,8 @@
     <tbody>
       <tr>
         <td colspan="3" style="padding-top:10px; padding-bottom:10px; background-color:#f5f5f5;" align="left">
-          <img src="imgs/assets/quick_shop_header.png" height="80px;" width="180px;" />
-          <h5>Walk Through in SuperMarket</h5>
+          <a href="">  <img src="imgs/assets/quick_shop_header.png" height="80px;" width="180px;" />
+          </a><h5>Walk Through in SuperMarket</h5>
         </td>
       </tr>
       <tr style="background-color:#402161; height:3px; font-size:0px;">
@@ -26,7 +26,7 @@
           <a href="billinghistory" style="margin: 0px 20px 0px 10px;">Billing History</a>
           <a href="#About" style="margin: 0px 20px 0px 10px;">About</a>
           <a href="#contact" style="margin: 0px 20px 0px 10px;">Contact</a>
-          <a href="mockup" style="margin: 0px 20px 0px 10px;">Mockup</a>
+          <a href="mockup" TARGET="_blank" style="margin: 0px 20px 0px 10px;">Mockup</a>
         </font>
         </td>
       </tr>
