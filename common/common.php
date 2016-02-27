@@ -1,10 +1,10 @@
 <?php
 function getSalt1() {
-	return 'asdf89sdfjwer93aksdfhks932o4n23nsduf789sar23hsjdfs';
+	return 'as1df';
 }
 
 function getSalt2() {
-	return 'sdresdfjs7823794234hjhwehrkwh87sdfhjsfsesdfhsd87sd';
+	return 'sd12re';
 }
 
 function getMD5Hash($str) {
@@ -16,7 +16,7 @@ function getUserToken($userEmail) {
 }
 
 function getEncryptBill($bill) {
-	return base64_encode("QUICKSHOPING".getSalt1().$bill.getSalt2()."QUICKSHOPING");
+	return base64_encode("QS".getSalt1().$bill.getSalt2()."QS");
 }
 
 ?>

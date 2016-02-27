@@ -26,39 +26,71 @@ $db = null;
 	<script src="barcodes/CODE128.js"></script>
 
 <style>
-li {
-    display: inline;
-		width:180;
-		float:left;
-}
+   a:link {    color: inherit;color: inherit; text-decoration: none;}
+
 </style>
 </head>
-<body>
-	<table align="center" cellspacing="20" >
+<body style="margin-top:0; margin-bottom:0; margin-left:0; margin-right:0; padding-top:10px; padding-bottom:30px; padding-left:0; padding-right:0; width:100%; background-color:#f5f5f5;">
+
+
+
+  <table cellspacing="0" cellpadding="0" width="80%" align="center" style="background-color:#FFF; color:#666666; font-family: avenir, Arial, 'Times New Roman', Times, serif;">
+
+	<!-- <table align="center" cellspacing="20" style="background-color: white;"> -->
+    <tr>
+      <td colspan="3" style="padding-top:10px; padding-bottom:10px; background-color:#f5f5f5;" align="left">
+        <img src="../imgs/assets/quick_shop_header.png" height="80px;" width="180px;" />
+        <h5>Walk Through in SuperMarket</h5>
+      </td>
+    </tr>
+    <tr style="background-color:#402161; height:3px; font-size:0px;">
+      <td colspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="background-color:#e9eaed; color:#000000; padding-top:10px; padding-bottom:10px; padding-left:5%;" align="left">
+      <font size="4">Welcome in Next Generation Shopping</font>
+      <font size="4" style="float: right;">
+        <a href="" style="margin: 0px 20px 0px 10px;">Test Barcode</a>
+        <a href="../#About" style="margin: 0px 20px 0px 10px;">About</a>
+        <a hreF="../#contact" style="margin: 0px 20px 0px 10px;">Contact</a>
+      </font>
+      </td>
+    </tr>
+
+</table>
+<table align="center" width="80%" cellspacing="20" style="background-color: white;">
+
+
 	<?php
 
 	foreach($updates as $values){
 
 		?>
 
-		<tr >
-				<td width="280" style="text-align:center;">
+		<tr style="background-color: white;">
+				<td width="30%" style="text-align:center;">
 						<img width="180" style="display: inline-block"	 height="auto" src="../imgs/upload/<?php echo $values->image;?>" alt="Mountain View" style="width:304px;height:228px;">
 				</td>
-				<td style="text-align:left;"  valign="top" width="280">
-				  <b>	<?php echo $values->title;?></b>
+				<td style="text-align:left;"  valign="top" width="25%">
+				<h2 style="" >  <b>	<?php echo $values->title;?></b></h2>
+				<!-- <p><span>Price: </span></p> -->
+				<h3><p><span>Our Price: <strike style="color:red;">₹<?php echo $values->orignal_price;?></strike>  </span><span style="color:green;">
+					&nbsp;₹<?php echo $values->our_price;?></span></p><h3>
 				</td>
-				<td width="280" valign="top" >
+				<td width="25%" style="padding-top: 15px;" valign="top" >
 						<img id="barcode3<?php echo $values->pid;?>"/>
 				</td>
 		</tr>
-		<tr>
 
-				<td style="text-align:left;padding-bottom: 70px; border-bottom:1pt solid black;"  valign="top" width="280"  colspan="3">
-						<?php    echo $string = str_replace('#', '<br/>', $values->detail);  ;?>
+				<td style="text-align:left;padding-bottom: 50px;line-height: 28px;"  valign="top" width="280"  colspan="3">
+						<?php    echo $string = str_replace('#', '<br/>', $values->detail);  ?>
 				</td>
 
 		</tr>
+    <tr><td style="text-align:left; border-bottom:1pt solid black;background-color:#402161; height:3px; font-size:0px;"  valign="top" width="280"  colspan="3">
+
+      </td>
+  </tr>
 		<?php
 }
 ?>

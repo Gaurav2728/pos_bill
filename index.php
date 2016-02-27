@@ -22,7 +22,7 @@
         <td colspan="3" style="background-color:#e9eaed; color:#000000; padding-top:10px; padding-bottom:10px; padding-left:5%;" align="left">
         <font size="4">Welcome in Next Generation Shopping</font>
         <font size="4" style="float: right;">
-          <a href="scan_code.php" style="margin: 0px 20px 0px 10px;">Test Barcode</a>
+          <a href="barcode" style="margin: 0px 20px 0px 10px;">Test Barcode</a>
           <a href="#About" style="margin: 0px 20px 0px 10px;">About</a>
           <a href="#contact" style="margin: 0px 20px 0px 10px;">Contact</a>
         </font>

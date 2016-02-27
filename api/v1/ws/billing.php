@@ -3,11 +3,9 @@
 $app->post('/bill/:paymentDone', function ($paymentDone) {
   $bill = addslashes(json_encode(getRequestBody()));
   try {
-    $sql = "INSERT INTO `bill` (`bill_detail`, `payment`, `date`) VALUES (':bill_detail', ':paymentInfo', NOW())";
+    $sql = "INSERT INTO `bill` (`bill_detail`, `payment`, `date`) VALUES ('$bill', '$paymentDone', NOW())";
     $db = getDB();
     $stmt = $db->prepare($sql);
-    $stmt->bindParam("bill_detail", $bill);
-    $stmt->bindParam("paymentInfo", $paymentDone);
     $stmt->execute();
     $id = $db->lastInsertId();
     $db = null;
