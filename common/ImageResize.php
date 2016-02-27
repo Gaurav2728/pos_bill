@@ -1,17 +1,18 @@
 <?php
-	header('Content-Type: image/jpg');
-	
-	
-	
 
+header('Content-Type: image/jpg');
+
+
+
+	$directory = '../imgs/upload/';
 	$imagename = $_REQUEST['imagename'];
 	$width= $_REQUEST['width'];
 	$height= $_REQUEST['height'];
-	$directory = $_REQUEST['directory'];
+	//$directory = $_REQUEST['directory'];
 	 //$path= $_SERVER['DOCUMENT_ROOT'];
-	
-	
-     $fullpath = $directory.'/'.$imagename;
+
+
+  $fullpath = $directory.$imagename;
 
  //  imagejpeg($fullpath);
 	include('SimpleImage.php');
@@ -19,9 +20,9 @@
 	$image->load($fullpath);
 
 
-	$oheight= $image->getheight(); 
+	$oheight= $image->getheight();
 	$owidth= $image->getWidth();
-	
+
 	//$height=100;
 	//$width=300;
 	if($oheight > $owidth)
@@ -36,6 +37,6 @@
 		//$image->save('test2.jpg');
 	      $image->output();
 	}
-	
-	
+
+
 ?>
