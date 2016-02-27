@@ -1,12 +1,12 @@
 <?php
 //-- gives you the product category list
 $app->post('/bill/:paymentDone', function ($paymentDone) {
-  $bill = getRequestBody();
+  $bill = addslashes(json_encode(getRequestBody()));
   try {
-    $sql = "INSERT INTO `bill` (`bill_detail`, `payment`, `date`) VALUES (':bill', ':paymentInfo', NOW())";
+    $sql = "INSERT INTO `bill` (`bill_detail`, `payment`, `date`) VALUES (':bill_detail', ':paymentInfo', NOW())";
     $db = getDB();
     $stmt = $db->prepare($sql);
-    $stmt->bindParam("bill", $bill);
+    $stmt->bindParam("bill_detail", $bill);
     $stmt->bindParam("paymentInfo", $paymentDone);
     $stmt->execute();
     $id = $db->lastInsertId();
@@ -15,8 +15,8 @@ $app->post('/bill/:paymentDone', function ($paymentDone) {
       showError(400, "Can't create bill.");
       return;
     }
-    $bill['bill_id'] = $id;
-    echo json_encode($bill);
+    $bill2['bill_id'] = $id;
+    echo json_encode($bill2);
   } catch(PDOException $e) {
     showError(400, "Report this bug to Developer", $e->getMessage(), $e);
   }
